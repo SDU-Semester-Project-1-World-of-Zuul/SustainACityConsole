@@ -1,5 +1,4 @@
-﻿using SustainACity.Model;
-using System.Text;
+﻿using System.Text;
 
 namespace SustainACity.Commands;
 
@@ -19,4 +18,3 @@ public class HelpCommand : Command
         return helpMessage.ToString();
     }
 }
-
