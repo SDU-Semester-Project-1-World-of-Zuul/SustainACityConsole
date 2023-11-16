@@ -1,20 +1,25 @@
-﻿using SustainACity.Minigames;
+﻿using System;
+using System.Reflection;
+using SustainACity.Minigames;
 
 public class MinigameFactory
 {
     public IMinigame CreateMinigame(string minigameName)
     {
-        switch (minigameName)
+        // Combines the minigame name with the namespace
+        string typeName = $"SustainACity.Minigames.{minigameName}";
+
+        // Get the Type from the minigame name
+        Type? minigameType = Type.GetType(typeName);
+
+        if (minigameType != null)
         {
-            case "SchoolQuizMinigame":
-                return new SchoolQuizMinigame();
-            case "TriviaMinigame":
-                return new WIPMinigame();
-            case "BalancingActMinigame":
-                return new BalancingActMinigame();
-            // Add other minigames here
-            default:
-                throw new ArgumentException("Invalid minigame name");
+            ConstructorInfo? constructor = minigameType.GetConstructor(Type.EmptyTypes);
+            return (IMinigame)constructor.Invoke(null);
+        }
+        else
+        {
+            throw new ArgumentException($"Minigame '{minigameName}' does not exist.", nameof(minigameName));
         }
     }
 }

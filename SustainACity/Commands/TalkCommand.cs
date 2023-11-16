@@ -23,8 +23,15 @@ public class TalkCommand : Command
                 var minigameName = _player.CurrentRoom.NPC.Minigame;
                 Console.WriteLine($"You start talking to {_player.CurrentRoom.NPC.Name} and they challenge you to a game of {minigameName}.");
 
-                IMinigame minigame = _minigameFactory.CreateMinigame(minigameName);
-                minigame.Play(_player);
+                try
+                {
+                    IMinigame minigame = _minigameFactory.CreateMinigame(minigameName);
+                    minigame.Play(_player);
+                }
+                catch (Exception ex)
+                {
+                    return $"Failed to navigate to the minigame: {ex.Message}";
+                }
 
                 return $"You finished playing {minigameName} with {_player.CurrentRoom.NPC.Name}.";
             }

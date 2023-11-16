@@ -9,7 +9,7 @@ public class JsonLoader
 
     public JsonLoader(string roomsFilePath)
     {
-        _roomsFilePath = roomsFilePath;
+        _roomsFilePath = Path.Combine(AppContext.BaseDirectory, "Data\\" + roomsFilePath);
     }
 
     public List<Room> LoadRooms()

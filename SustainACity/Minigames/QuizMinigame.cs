@@ -3,7 +3,7 @@ using System.Reflection.Emit;
 using SustainACity.Model;
 
 namespace SustainACity.Minigames;
-public class SchoolQuizMinigame : IMinigame
+public class QuizMinigame : IMinigame
 {
     private List<TriviaQuestion> _questions;
     private int TriviaScore;
@@ -27,7 +27,7 @@ public class SchoolQuizMinigame : IMinigame
         }
     }
 
-    public SchoolQuizMinigame()
+    public QuizMinigame()
     {
         _questions = new List<TriviaQuestion>
         {

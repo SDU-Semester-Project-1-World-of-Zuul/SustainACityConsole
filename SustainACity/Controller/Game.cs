@@ -17,7 +17,7 @@ public class Game
     {
         IsRunning = true;
         _gameView = new GameView();
-        JsonLoader jsonLoader = new(Path.Combine(AppContext.BaseDirectory, "Data/Rooms.json"));
+        JsonLoader jsonLoader = new("rooms.json");
         _roomMap = jsonLoader.LoadRooms().ToDictionary(room => (room.X, room.Y));
         _player = player;
         _player = new() { CurrentRoom = _roomMap.GetValueOrDefault((0, 0))! };
