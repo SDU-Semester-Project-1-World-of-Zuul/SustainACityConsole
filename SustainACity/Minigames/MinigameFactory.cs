@@ -14,7 +14,7 @@ public class MinigameFactory
 
         if (minigameType != null)
         {
-            ConstructorInfo? constructor = minigameType.GetConstructor(Type.EmptyTypes);
+            ConstructorInfo constructor = minigameType.GetConstructor(Type.EmptyTypes) ?? throw new InvalidOperationException($"Minigame '{minigameName}' does not have a parameterless constructor.");
             return (IMinigame)constructor.Invoke(null);
         }
         else
